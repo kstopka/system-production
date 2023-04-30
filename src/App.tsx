@@ -1,10 +1,10 @@
 import "./App.css";
-import AdditionalForm from "./components/AdditionalForm";
+import AdditionalMaterialForm from "./components/AdditionalMaterialForm";
 
 function App() {
   return (
     <div className="App">
-      <AdditionalForm />
+      <AdditionalMaterialForm />
     </div>
   );
 }

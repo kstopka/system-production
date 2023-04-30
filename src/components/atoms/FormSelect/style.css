@@ -1,0 +1,10 @@
+.wrapperSelect {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.formSelect {
+  height: 24px;
+}

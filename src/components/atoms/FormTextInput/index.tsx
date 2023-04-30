@@ -63,7 +63,13 @@ const FormTextInput: React.FC<FormTextInputProps> = ({
           className="textInput"
         />
         {status !== "default" && !isTyping ? (
-          <div className={status === "success" ? "success" : "error"}>
+          <div
+            className={
+              status === "success"
+                ? "svgContainer success"
+                : "svgContainer error"
+            }
+          >
             {status === "success" ? <CheckCircleSVG /> : <AlertSVG />}
           </div>
         ) : null}
