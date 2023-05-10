@@ -7,17 +7,15 @@ const nameSchemeValidation = yup
   .required("To pole jest wymagane")
   .test(
     "at least one word",
-    "Pole wymaga poprawnie wprowadzonego imienia",
+    "Pole wymaga poprawnie wprowadzonej nazwy",
     (value = "") => REGEXPS.oneOrMoreWords.test(value)
   );
 
 const doubleTypeValidation = yup
   .string()
   .required("To pole jest wymagane")
-  .test(
-    "is at least one number",
-    "Pole wymaga poprawnie wprowadzonego imienia",
-    (value = "") => REGEXPS.doubleType.test(value)
+  .test("is at least one number", "Pole wymaga liczb", (value = "") =>
+    REGEXPS.doubleType.test(value)
   );
 
 const textBlockSchemeValidation = yup

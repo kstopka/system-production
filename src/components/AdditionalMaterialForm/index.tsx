@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import { FormProvider, useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { defaultValues, schema, unitsMaterial } from "./utils";
 import FormTextInput from "../atoms/FormTextInput";
 import FormSelect from "../atoms/FormSelect";
 import "./style.css";
+import { AdditionalMaterialFormProps } from "./types";
 
-const AdditionalMaterialForm = () => {
+const AdditionalMaterialForm: React.FC<AdditionalMaterialFormProps> = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [unitMaterial, setUnitMaterial] = useState<string>(
     unitsMaterial[0].code
@@ -15,23 +17,17 @@ const AdditionalMaterialForm = () => {
     defaultValues,
     resolver: yupResolver(schema),
   });
-  const { handleSubmit, reset } = methods;
+  const { handleSubmit, reset, setValue } = methods;
 
   const handleUnitMaterial = (value: string) => {
     setUnitMaterial(value);
   };
 
   const onSubmit: SubmitHandler<typeof defaultValues> = async (formValues) => {
-    console.log({
-      ...formValues,
-      unitMaterial,
-    });
+    console.log(formValues);
     try {
-      // TODO: added endpoint
-      // await Api.sendNewMaterial({
-      //   ...formValues,
-      //   unitMaterial
-      // });
+      // TODO: add endpoint
+      // await Api.sendNewMaterial(formValues);
       reset(defaultValues);
     } catch (err) {
       console.log("error");
@@ -40,8 +36,13 @@ const AdditionalMaterialForm = () => {
     }
   };
 
+  useEffect(() => {
+    setValue("unitMaterial", unitMaterial);
+  }, [unitMaterial]);
+
   return (
     <div className="wrapperForm">
+      <h2>AdditionalMaterialForm</h2>
       <FormProvider {...methods}>
         <form
           className="form"
@@ -65,8 +66,9 @@ const AdditionalMaterialForm = () => {
             state={unitMaterial}
             setState={handleUnitMaterial}
           />
+
           <div className="wrapperButton">
-            <button className={isLoading ? "loading" : ""}>
+            <button className={`primaryBtn ${isLoading ? "loading" : ""}`}>
               {isLoading ? "Proszę czekać" : "Wyślij"}
             </button>
           </div>

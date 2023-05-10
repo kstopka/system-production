@@ -6,3 +6,17 @@
   margin: 0;
   outline: none;
 }
+
+.primaryBtn {
+  padding: 10px 20px;
+  text-transform: uppercase;
+  font-weight: 700;
+  background-color: black;
+  color: white;
+  border: black 2px solid;
+}
+
+.primaryBtn:hover {
+  background-color: white;
+  color: black;
+}

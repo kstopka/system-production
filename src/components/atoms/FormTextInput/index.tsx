@@ -17,9 +17,11 @@ const FormTextInput: React.FC<FormTextInputProps> = ({
   const { errors, dirtyFields } = formState;
   const [status, setStatus] = useState<StatusType>("default");
   const [isTyping, setIsTyping] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<any>("");
 
   useEffect(() => {
     const fieldError = errors[name];
+    setErrorMessage(fieldError?.message);
     const fieldDirty = dirtyFields[name];
     const hasError = fieldError !== undefined;
     const isValid = !hasError && fieldDirty !== undefined;
@@ -72,6 +74,9 @@ const FormTextInput: React.FC<FormTextInputProps> = ({
           >
             {status === "success" ? <CheckCircleSVG /> : <AlertSVG />}
           </div>
+        ) : null}
+        {!isTyping && status === "error" ? (
+          <div className="error">{errorMessage}</div>
         ) : null}
       </div>
     </div>

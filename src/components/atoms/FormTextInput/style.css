@@ -6,12 +6,13 @@
 }
 .formTextInput {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
 .textInput {
   height: 24px;
-  width: 100%;
+  width: 90%;
 }
 
 .svgContainer {
@@ -24,4 +25,8 @@
 
 .error svg path {
   fill: red;
+}
+
+.error {
+  color: red;
 }
