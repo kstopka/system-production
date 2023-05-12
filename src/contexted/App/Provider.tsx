@@ -14,14 +14,14 @@ const AppProvider: React.FC<AppProviderProps> = ({
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const database = useMemo(() => databaseJson.database, [databaseJson]);
+  const database = useMemo(() => databaseJson, [databaseJson]);
 
   const getDatabase = async () => {
     // const { response } = await WPApi.getDatabase();
     console.log("AppCtx state database", database);
     dispatch({
       type: "setDatabase",
-      payload: database || [],
+      payload: database || {},
     });
   };
 
@@ -31,7 +31,7 @@ const AppProvider: React.FC<AppProviderProps> = ({
   }, []);
 
   useEffect(() => {
-    console.log("AppCtx state ", state);
+    console.log("AppCtx state ", state.database);
   }, [state]);
 
   return (

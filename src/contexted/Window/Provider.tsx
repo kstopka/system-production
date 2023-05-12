@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { WindowProviderProps } from "./types";
 import throttle from "lodash.throttle";
 

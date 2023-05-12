@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FormProvider, useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { defaultValues, schema, unitsMaterial } from "./utils";
+import { defaultValues, schema } from "./utils";
 import FormTextInput from "../atoms/FormTextInput";
 import FormSelect from "../atoms/FormSelect";
 import "./style.css";
@@ -11,12 +11,14 @@ import { AppCtx, useActions, useContextState } from "../../contexted";
 import { IAppActions, IAppState } from "../../contexted/App/types";
 
 const AdditionalMaterialForm: React.FC<AdditionalMaterialFormProps> = () => {
-  // const { database } = useContextState<IAppState>(AppCtx, "database");
+  const { database } = useContextState<IAppState>(AppCtx, "database");
+  const { unitsMaterial } = database;
+
   const { addMaterial } = useActions<IAppActions>(AppCtx, "addMaterial");
 
   const [isLoading, setIsLoading] = useState(false);
   const [unitMaterial, setUnitMaterial] = useState<string>(
-    unitsMaterial[0].code
+    unitsMaterial && unitsMaterial.length > 0 ? unitsMaterial[0].code : ""
   );
 
   const methods = useForm({
@@ -42,6 +44,8 @@ const AdditionalMaterialForm: React.FC<AdditionalMaterialFormProps> = () => {
         priceMaterial: Number(formValues.priceMaterial),
       });
       reset(defaultValues);
+      setUnitMaterial(unitsMaterial[0].code);
+      setValue("unitMaterial", unitsMaterial[0].code);
     } catch (err) {
       console.log("error");
     } finally {
@@ -52,6 +56,12 @@ const AdditionalMaterialForm: React.FC<AdditionalMaterialFormProps> = () => {
   useEffect(() => {
     setValue("unitMaterial", unitMaterial);
   }, [unitMaterial]);
+
+  useEffect(() => {
+    setUnitMaterial(
+      unitsMaterial && unitsMaterial.length > 0 ? unitsMaterial[0].code : ""
+    );
+  }, [unitsMaterial]);
 
   return (
     <div className="wrapperForm">
