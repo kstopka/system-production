@@ -1,0 +1,24 @@
+{
+  "database": {
+    "materials": [
+      {
+        "idMaterial": 0,
+        "nameMaterial": "Metry",
+        "priceMaterial": 21,
+        "unitMaterial": "m"
+      },
+      {
+        "idMaterial": 1,
+        "nameMaterial": "Litry",
+        "priceMaterial": 21,
+        "unitMaterial": "l"
+      },
+      {
+        "idMaterial": 2,
+        "nameMaterial": "Metry",
+        "priceMaterial": 21,
+        "unitMaterial": "cm"
+      }
+    ]
+  }
+}
