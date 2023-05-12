@@ -1,6 +1,6 @@
 import { ReactNode, Dispatch } from "react";
 
-interface IMaterials {
+interface IMaterial {
   idMaterial: number;
   nameMaterial: string;
   priceMaterial: number;
@@ -8,7 +8,7 @@ interface IMaterials {
 }
 
 interface IDatabase {
-  materials: IMaterials[];
+  materials: IMaterial[];
 }
 
 interface IAppState {
@@ -23,12 +23,17 @@ type AppActionType =
   | {
       type: "setDatabase";
       payload: IDatabase;
+    }
+  | {
+      type: "addMaterial";
+      payload: IMaterial;
     };
 
 interface IAppActions {
   loaded: () => void;
   loading: () => void;
   setDatabase: (database: IDatabase) => void;
+  addMaterial: (material: IMaterial) => void;
 }
 
 interface AppProviderProps {
@@ -42,7 +47,7 @@ interface IAppContext {
 }
 
 export type {
-  IMaterials,
+  IMaterial,
   IDatabase,
   IAppState,
   IAppActions,

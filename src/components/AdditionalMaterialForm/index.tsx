@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { FormProvider, useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { defaultValues, schema, unitsMaterial } from "./utils";
@@ -7,12 +7,18 @@ import FormTextInput from "../atoms/FormTextInput";
 import FormSelect from "../atoms/FormSelect";
 import "./style.css";
 import { AdditionalMaterialFormProps } from "./types";
+import { AppCtx, useActions, useContextState } from "../../contexted";
+import { IAppActions, IAppState } from "../../contexted/App/types";
 
 const AdditionalMaterialForm: React.FC<AdditionalMaterialFormProps> = () => {
+  // const { database } = useContextState<IAppState>(AppCtx, "database");
+  const { addMaterial } = useActions<IAppActions>(AppCtx, "addMaterial");
+
   const [isLoading, setIsLoading] = useState(false);
   const [unitMaterial, setUnitMaterial] = useState<string>(
     unitsMaterial[0].code
   );
+
   const methods = useForm({
     defaultValues,
     resolver: yupResolver(schema),
@@ -25,9 +31,16 @@ const AdditionalMaterialForm: React.FC<AdditionalMaterialFormProps> = () => {
 
   const onSubmit: SubmitHandler<typeof defaultValues> = async (formValues) => {
     console.log(formValues);
+
     try {
       // TODO: add endpoint
-      // await Api.sendNewMaterial(formValues);
+      const response: number = 0;
+      // const { response }: { response: number } = await Api.sendNewMaterial(formValues);
+      addMaterial({
+        ...formValues,
+        idMaterial: response,
+        priceMaterial: Number(formValues.priceMaterial),
+      });
       reset(defaultValues);
     } catch (err) {
       console.log("error");

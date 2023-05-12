@@ -11,6 +11,8 @@ function appReducer(state = initialState, action: AppActionType): IAppState {
       return actions.loading(state);
     case "setDatabase":
       return actions.setDatabase(state, action.payload);
+    case "addMaterial":
+      return actions.addMaterial(state, action.payload);
     default:
       throw new Error("Wrong action type in app reducer");
   }

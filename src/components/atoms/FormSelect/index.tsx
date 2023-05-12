@@ -27,7 +27,7 @@ const FormSelect: React.FC<FormSelectProps> = ({
         id={name}
       >
         {array.map(({ name, code }) => (
-          <option value={code} key={code}>
+          <option value={code} key={`${name} ${code}`}>
             {name}
           </option>
         ))}
