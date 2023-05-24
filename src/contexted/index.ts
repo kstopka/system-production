@@ -2,6 +2,7 @@
 import { useContext, Context } from "react";
 
 import { AppProvider, AppCtx } from "./App/Provider";
+import { AuthProvider, AuthCtx } from "./Auth/Provider";
 import { WindowProvider, WindowCtx } from "./Window/Provider";
 
 interface ElasticObject {
@@ -60,6 +61,8 @@ export {
   useContextState,
   AppProvider,
   AppCtx,
+  AuthProvider,
+  AuthCtx,
   WindowProvider,
   WindowCtx,
 };
