@@ -38,44 +38,44 @@ const AuthProvider: React.FC<AuthProviderProps> = ({
       },
     });
 
-    AuthApi.validateToken(token)
-      .then(() => {
-        const auth = localStorage.getItem("AuthCtx");
-        if (auth) {
-          const parsedAuth = JSON.parse(auth);
-          dispatch({
-            type: "loadAuth",
-            payload: {
-              auth: parsedAuth,
-            },
-          });
-          dispatch({
-            type: "setAuthBusy",
-            payload: { isBusy: false },
-          });
-        }
-      })
-      .catch(() => {
-        dispatch({
-          type: "logOut",
-        });
-        dispatch({
-          type: "setAuthBusy",
-          payload: {
-            isBusy: false,
-          },
-        });
-      })
-      .finally(() => {
-        setFirstRender(false);
-        onLoad(dispatch);
-        dispatch({
-          type: "setAuthBusy",
-          payload: {
-            isBusy: false,
-          },
-        });
-      });
+    // AuthApi.validateToken(token)
+    //   .then(() => {
+    //     const auth = localStorage.getItem("AuthCtx");
+    //     if (auth) {
+    //       const parsedAuth = JSON.parse(auth);
+    //       dispatch({
+    //         type: "loadAuth",
+    //         payload: {
+    //           auth: parsedAuth,
+    //         },
+    //       });
+    //       dispatch({
+    //         type: "setAuthBusy",
+    //         payload: { isBusy: false },
+    //       });
+    //     }
+    //   })
+    //   .catch(() => {
+    //     dispatch({
+    //       type: "logOut",
+    //     });
+    //     dispatch({
+    //       type: "setAuthBusy",
+    //       payload: {
+    //         isBusy: false,
+    //       },
+    //     });
+    //   })
+    //   .finally(() => {
+    //     setFirstRender(false);
+    //     onLoad(dispatch);
+    //     dispatch({
+    //       type: "setAuthBusy",
+    //       payload: {
+    //         isBusy: false,
+    //       },
+    //     });
+    //   });
   }, []);
 
   useEffect(() => {
