@@ -3,20 +3,8 @@ import ReactDOM from "react-dom/client";
 import "./styles/index.css";
 
 import ContextsWrapper from "./AllContextsWrapper";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { ContactPage, HomePage } from "./templates";
-import URL_PATHS from "./constants/routes";
-
-export const router = createBrowserRouter([
-  {
-    path: URL_PATHS.home,
-    element: <HomePage />,
-  },
-  {
-    path: URL_PATHS.contact,
-    element: <ContactPage />,
-  },
-]);
+import { RouterProvider } from "react-router-dom";
+import { router } from "./constants/routes";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
