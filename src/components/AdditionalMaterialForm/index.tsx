@@ -32,8 +32,6 @@ const AdditionalMaterialForm: React.FC<AdditionalMaterialFormProps> = () => {
   };
 
   const onSubmit: SubmitHandler<typeof defaultValues> = async (formValues) => {
-    console.log(formValues);
-
     try {
       // TODO: add endpoint
       const response: number = 0;
@@ -47,7 +45,7 @@ const AdditionalMaterialForm: React.FC<AdditionalMaterialFormProps> = () => {
       setUnitMaterial(unitsMaterial[0].code);
       setValue("unitMaterial", unitsMaterial[0].code);
     } catch (err) {
-      console.log("error");
+      console.error("error");
     } finally {
       setIsLoading(false);
     }

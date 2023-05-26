@@ -17,8 +17,8 @@ const AppProvider: React.FC<AppProviderProps> = ({
   const database = useMemo(() => databaseJson, [databaseJson]);
 
   const getDatabase = async () => {
+    // TODO:
     // const { response } = await DatabaseApi.getDatabase();
-    console.log("AppCtx state database", database);
     dispatch({
       type: "setDatabase",
       payload: database || {},
@@ -29,10 +29,6 @@ const AppProvider: React.FC<AppProviderProps> = ({
     onLoad(dispatch);
     getDatabase();
   }, []);
-
-  useEffect(() => {
-    console.log("AppCtx state ", state.database);
-  }, [state]);
 
   return (
     <AppCtx.Provider

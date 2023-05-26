@@ -1,37 +1,37 @@
 class ClassAuthApi {
   loginUser({ email, password }: { email: string; password: string }) {
-    if (email === "123" && password === "qwe") {
+    if (email === "Janek" && password === "qwe") {
       return Promise.resolve({
         data: { message: "message" },
         userData: {
           id: 2,
           level: 1,
           email: `email.com`,
-          first_name: "first",
+          first_name: "Janek",
           last_name: "last",
         },
       });
     }
-    if (email === "1234" && password === "qwe") {
+    if (email === "Marysia" && password === "qwe") {
       return Promise.resolve({
         data: { message: "message" },
         userData: {
           id: 2,
           level: 2,
           email: `email.com`,
-          first_name: "first",
+          first_name: "Marysia",
           last_name: "last",
         },
       });
     }
-    if (email === "12345" && password === "qwe") {
+    if (email === "Karol" && password === "qwe") {
       return Promise.resolve({
         data: { message: "message" },
         userData: {
           id: 2,
           level: 3,
           email: `email.com`,
-          first_name: "first",
+          first_name: "Karol",
           last_name: "last",
         },
       });

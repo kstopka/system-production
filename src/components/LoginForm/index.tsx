@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FormProvider } from "react-hook-form";
 import FormTextInput from "../atoms/FormTextInput";
 import { useLogin } from "./logic";
@@ -7,6 +7,20 @@ import "./style.css";
 const LoginForm: React.FC = (): JSX.Element => {
   const { isLoading, methods, onSubmit } = useLogin();
   const { handleSubmit } = methods;
+
+  const login = ({ key }: KeyboardEvent) => {
+    if (key === "1") onSubmit({ email: "Janek", password: "qwe" });
+    if (key === "2") onSubmit({ email: "Marysia", password: "qwe" });
+    if (key === "3") onSubmit({ email: "Karol", password: "qwe" });
+  };
+
+  useEffect(() => {
+    window.addEventListener("keydown", login);
+
+    return () => {
+      window.removeEventListener("keydown", login);
+    };
+  }, []);
 
   return (
     <div className="Login">

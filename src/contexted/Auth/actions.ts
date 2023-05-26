@@ -35,8 +35,6 @@ class AuthActions {
     state: IAuthState,
     { payload }: { payload: LoadAuthPayloadType }
   ) => {
-    console.log("CtxAuth loadAuth", payload);
-
     const { auth } = payload;
 
     return {
@@ -61,7 +59,6 @@ class AuthActions {
   //   state: IAuthState,
   //   { payload }: { payload: Record<string, string> }
   // ) => {
-  //   console.log("CtxAuth setAccountDetails", payload);
   //   const {
   //     newEmail: email,
   //     newFirstName: first_name,

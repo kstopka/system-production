@@ -9,7 +9,11 @@ interface IHeaderProps {}
 
 const Header: React.FC<IHeaderProps> = (): JSX.Element => {
   const URL_PATHS_ARRAY: URLSinglePath[] = objectToArray(URL_PATHS);
-  const { level } = useContextState<IAuthState>(AuthCtx, ["level"]);
+  const { level, loggedIn, first_name } = useContextState<IAuthState>(AuthCtx, [
+    "level",
+    "loggedIn",
+    "first_name",
+  ]);
   const { logOut } = useActions<IAuthActions>(AuthCtx, ["logOut"]);
   const navigate = useNavigate();
 
@@ -43,6 +47,7 @@ const Header: React.FC<IHeaderProps> = (): JSX.Element => {
           </button>
         ) : null}
       </nav>
+      {loggedIn && <div className="Name">{first_name}</div>}
     </header>
   );
 };

@@ -80,7 +80,6 @@ const AuthProvider: React.FC<AuthProviderProps> = ({
 
   useEffect(() => {
     if (!firstRender) {
-      console.log("AuthCtx state", state);
       localStorage.setItem("AuthCtx", JSON.stringify(state));
     }
   }, [state, firstRender]);

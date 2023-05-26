@@ -32,7 +32,6 @@ export const useLogin = (): IUseLogin => {
     setIsLoading(true);
     AuthApi.loginUser(formValues)
       .then((res: ILoginData) => {
-        console.log("CtxAuth login:", res);
         logIn(res.userData);
         navigate(URL_PATHS.home.slug);
         reset();

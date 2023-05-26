@@ -62,7 +62,6 @@ const WindowProvider: React.FC<WindowProviderProps> = ({ children }) => {
   }, []);
 
   // useEffect(() => {
-  //   console.log("WindowCtx state ", state)
   //   onStateChange(state)
   // }, [state])
 

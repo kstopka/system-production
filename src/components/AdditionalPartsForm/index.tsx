@@ -35,7 +35,6 @@ const AdditionalPartsForm = () => {
   };
 
   const onSubmit: SubmitHandler<typeof defaultValues> = async (formValues) => {
-    console.log(formValues);
     try {
       // TODO: add endpoint
       // await Api.sendNewMaterial(formValues);
@@ -46,7 +45,7 @@ const AdditionalPartsForm = () => {
       setValue("unitMaterial", unitsMaterial[0].code);
       toggleAdditionalMaterial(false);
     } catch (err) {
-      console.log("error");
+      console.error("error");
     } finally {
       setIsLoading(false);
     }
