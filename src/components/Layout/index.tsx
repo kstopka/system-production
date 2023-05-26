@@ -15,7 +15,10 @@ interface ILayout {
 
 const Layout: React.FC<ILayout> = ({ children, seo }): JSX.Element => {
   const location = useLocation();
-  const { level } = useContextState<IAuthState>(AuthCtx, ["level"]);
+  const { level, loggedIn } = useContextState<IAuthState>(AuthCtx, [
+    "level",
+    "loggedIn",
+  ]);
   const { logOut } = useActions<IAuthActions>(AuthCtx, ["logOut"]);
 
   const navigate = useNavigate();
@@ -32,9 +35,11 @@ const Layout: React.FC<ILayout> = ({ children, seo }): JSX.Element => {
     };
   }, []);
 
-  if (level === 0 && location.pathname !== "/login/") {
-    navigate(URL_PATHS.login.slug);
-  }
+  useEffect(() => {
+    if (level === 0 && location.pathname !== "/login/") {
+      navigate(URL_PATHS.login.slug);
+    }
+  }, [level, location.pathname, loggedIn, navigate]);
 
   return (
     <div className="Layout">
