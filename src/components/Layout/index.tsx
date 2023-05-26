@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import Head from "./Head";
 import Header from "./Header";
 import "./styles.css";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 interface ILayout {
   children: React.ReactNode;
@@ -42,12 +43,14 @@ const Layout: React.FC<ILayout> = ({ children, seo }): JSX.Element => {
   }, [level, location.pathname, loggedIn, navigate]);
 
   return (
-    <div className="Layout">
-      <Head seo={seo} location={location} />
-      <Header />
-      <main>{children}</main>
-      <Footer />
-    </div>
+    <HelmetProvider>
+      <div className="Layout">
+        <Head seo={seo} location={location} />
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </div>
+    </HelmetProvider>
   );
 };
 
