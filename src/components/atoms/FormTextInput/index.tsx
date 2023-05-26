@@ -10,6 +10,7 @@ import "./style.css";
 const FormTextInput: React.FC<FormTextInputProps> = ({
   name,
   placeholder,
+  type = "text",
   label = "",
   isDisabled = false,
 }) => {
@@ -59,6 +60,7 @@ const FormTextInput: React.FC<FormTextInputProps> = ({
       <div className="formTextInput">
         <input
           id={name}
+          type={type}
           placeholder={placeholder}
           disabled={isDisabled}
           {...register(name, { onBlur, onChange })}

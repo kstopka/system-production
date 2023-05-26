@@ -17,7 +17,7 @@ const AppProvider: React.FC<AppProviderProps> = ({
   const database = useMemo(() => databaseJson, [databaseJson]);
 
   const getDatabase = async () => {
-    // const { response } = await WPApi.getDatabase();
+    // const { response } = await DatabaseApi.getDatabase();
     console.log("AppCtx state database", database);
     dispatch({
       type: "setDatabase",

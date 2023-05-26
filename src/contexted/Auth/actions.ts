@@ -12,9 +12,9 @@ import { IAuthState, LoadAuthPayloadType } from "./types";
 
 class AuthActions {
   logIn = (state: IAuthState, { payload }: { payload: any }) => {
-    console.log("CtxAuth logIn", payload);
-    const { id, level, email, first_name, last_name, token } = payload;
-    Cookies.set("token", token, { expires: 2 });
+    // const { id, level, email, first_name, last_name, token } = payload;
+    // Cookies.set("token", token, { expires: 2 });
+    const { id, level, email, first_name, last_name } = payload;
     return {
       ...state,
       loggedIn: true,
@@ -27,7 +27,7 @@ class AuthActions {
   };
 
   logOut = () => {
-    Cookies.remove("token");
+    // Cookies.remove("token");
     return initialState;
   };
 
