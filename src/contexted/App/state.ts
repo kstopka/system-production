@@ -5,7 +5,6 @@ const initialState: IAppState = {
   isModalOpen: false,
   database: {
     materials: [],
-    unitsMaterial: [],
   },
 };
 

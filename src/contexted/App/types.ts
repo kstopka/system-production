@@ -1,8 +1,4 @@
 import { ReactNode, Dispatch } from "react";
-interface IUnitsMaterial {
-  name: string;
-  code: string;
-}
 
 interface IMaterial {
   idMaterial: number;
@@ -13,7 +9,6 @@ interface IMaterial {
 
 interface IDatabase {
   materials: IMaterial[];
-  unitsMaterial: IUnitsMaterial[];
 }
 
 interface IAppState {
@@ -57,7 +52,6 @@ interface IAppContext {
 }
 
 export type {
-  IUnitsMaterial,
   IMaterial,
   IDatabase,
   IAppState,

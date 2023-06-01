@@ -1,19 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FormProvider, useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { defaultValues, schema } from "./utils";
 import FormTextInput from "../atoms/FormTextInput";
-import FormSelect from "../atoms/FormSelect";
 import "./style.css";
 import { AdditionalMaterialFormProps } from "./types";
-import { AppCtx, useActions, useContextState } from "../../contexted";
-import { IAppActions, IAppState } from "../../contexted/App/types";
+import { AppCtx, useActions } from "../../contexted";
+import { IAppActions } from "../../contexted/App/types";
 import Api from "../../fakeAPI/API";
 
 const AdditionalMaterialForm: React.FC<AdditionalMaterialFormProps> = () => {
-  const { database } = useContextState<IAppState>(AppCtx, "database");
-  const { unitsMaterial } = database;
+  // const { database } = useContextState<IAppState>(AppCtx, "database");
+  // const { unitsMaterial } = database;
 
   const { addMaterial } = useActions<IAppActions>(AppCtx, "addMaterial");
 
