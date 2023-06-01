@@ -10,7 +10,7 @@ export const defaultValues = {
 export const schema = yup.object().shape({
   nameMaterial: YUP.nameSchemeValidation,
   priceMaterial: YUP.doubleTypeValidation,
-  // unitMaterial: YUP.nameSchemeValidation,
+  unitMaterial: YUP.nameSchemeValidation,
 });
 
 export const unitsMaterial = [

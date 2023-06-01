@@ -9,6 +9,7 @@ import "./style.css";
 import { AdditionalMaterialFormProps } from "./types";
 import { AppCtx, useActions, useContextState } from "../../contexted";
 import { IAppActions, IAppState } from "../../contexted/App/types";
+import Api from "../../fakeAPI/API";
 
 const AdditionalMaterialForm: React.FC<AdditionalMaterialFormProps> = () => {
   const { database } = useContextState<IAppState>(AppCtx, "database");
@@ -17,9 +18,9 @@ const AdditionalMaterialForm: React.FC<AdditionalMaterialFormProps> = () => {
   const { addMaterial } = useActions<IAppActions>(AppCtx, "addMaterial");
 
   const [isLoading, setIsLoading] = useState(false);
-  const [unitMaterial, setUnitMaterial] = useState<string>(
-    unitsMaterial && unitsMaterial.length > 0 ? unitsMaterial[0].code : ""
-  );
+  // const [unitMaterial, setUnitMaterial] = useState<string>(
+  //   unitsMaterial && unitsMaterial.length > 0 ? unitsMaterial[0].code : ""
+  // );
 
   const methods = useForm({
     defaultValues,
@@ -27,23 +28,22 @@ const AdditionalMaterialForm: React.FC<AdditionalMaterialFormProps> = () => {
   });
   const { handleSubmit, reset, setValue } = methods;
 
-  const handleUnitMaterial = (value: string) => {
-    setUnitMaterial(value);
-  };
+  // const handleUnitMaterial = (value: string) => {
+  //   setUnitMaterial(value);
+  // };
 
   const onSubmit: SubmitHandler<typeof defaultValues> = async (formValues) => {
     try {
-      // TODO: add endpoint
-      const response: number = 0;
-      // const { response }: { response: number } = await Api.sendNewMaterial(formValues);
+      const response = await Api.addMaterial(formValues);
+      console.log(response.data.insertId);
       addMaterial({
         ...formValues,
-        idMaterial: response,
+        idMaterial: response.data.insertId,
         priceMaterial: Number(formValues.priceMaterial),
       });
       reset(defaultValues);
-      setUnitMaterial(unitsMaterial[0].code);
-      setValue("unitMaterial", unitsMaterial[0].code);
+      // setUnitMaterial(unitsMaterial[0].code);
+      // setValue("unitMaterial", unitsMaterial[0].code);
     } catch (err) {
       console.error("error");
     } finally {
@@ -51,15 +51,15 @@ const AdditionalMaterialForm: React.FC<AdditionalMaterialFormProps> = () => {
     }
   };
 
-  useEffect(() => {
-    setValue("unitMaterial", unitMaterial);
-  }, [unitMaterial]);
+  // useEffect(() => {
+  //   setValue("unitMaterial", unitMaterial);
+  // }, [unitMaterial]);
 
-  useEffect(() => {
-    setUnitMaterial(
-      unitsMaterial && unitsMaterial.length > 0 ? unitsMaterial[0].code : ""
-    );
-  }, [unitsMaterial]);
+  // useEffect(() => {
+  //   setUnitMaterial(
+  //     unitsMaterial && unitsMaterial.length > 0 ? unitsMaterial[0].code : ""
+  //   );
+  // }, [unitsMaterial]);
 
   return (
     <div className="wrapperForm">
@@ -80,13 +80,18 @@ const AdditionalMaterialForm: React.FC<AdditionalMaterialFormProps> = () => {
             placeholder="Cena Materiału"
             label="Cena Materiału"
           />
-          <FormSelect
+          <FormTextInput
+            name="unitMaterial"
+            placeholder="Jednostka Materiału"
+            label="Jednostka Materiału"
+          />
+          {/* <FormSelect
             name="unitMaterial"
             label="Jednostka Materiału"
             array={unitsMaterial}
             state={unitMaterial}
             setState={handleUnitMaterial}
-          />
+          /> */}
 
           <div className="wrapperButton">
             <button className={`primaryBtn ${isLoading ? "loading" : ""}`}>

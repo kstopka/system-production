@@ -5,7 +5,14 @@ import { useLogin } from "./logic";
 import "./style.css";
 
 const LoginForm: React.FC = (): JSX.Element => {
-  const { isLoading, methods, onSubmit } = useLogin();
+  const {
+    isLoading,
+    isAlertVisible,
+    response,
+    methods,
+    onSubmit,
+    onCloseAlert,
+  } = useLogin();
   const { handleSubmit } = methods;
 
   const login = ({ key }: KeyboardEvent) => {

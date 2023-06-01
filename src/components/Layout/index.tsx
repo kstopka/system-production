@@ -7,7 +7,7 @@ import Footer from "./Footer";
 import Head from "./Head";
 import Header from "./Header";
 import "./styles.css";
-import { Helmet, HelmetProvider } from "react-helmet-async";
+import { HelmetProvider } from "react-helmet-async";
 
 interface ILayout {
   children: React.ReactNode;
