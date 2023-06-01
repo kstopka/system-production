@@ -15,6 +15,11 @@ class AppActions {
     database: payload,
   });
 
+  setMaterials = (state: IAppState, payload: IMaterial[]) => ({
+    ...state,
+    database: { ...state.database, materials: payload },
+  });
+
   addMaterial = (state: IAppState, payload: IMaterial) => ({
     ...state,
     database: {

@@ -30,6 +30,10 @@ type AppActionType =
       payload: IDatabase;
     }
   | {
+      type: "setMaterials";
+      payload: IMaterial[];
+    }
+  | {
       type: "addMaterial";
       payload: IMaterial;
     };
@@ -38,6 +42,7 @@ interface IAppActions {
   loaded: () => void;
   loading: () => void;
   setDatabase: (database: IDatabase) => void;
+  setMaterials: (materials: IMaterial[]) => void;
   addMaterial: (material: IMaterial) => void;
 }
 
