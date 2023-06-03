@@ -1,8 +1,8 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { AppCtx, useActions } from "../../contexted";
-import { IAppActions } from "../../contexted/App/types";
+import { AppCtx, useActions, useContextState } from "../../contexted";
+import { IAppActions, IAppState, IMaterial } from "../../contexted/App/types";
 import Api from "../../fakeAPI/API";
 import { defaultValues, schema } from "./utils";
 
@@ -11,8 +11,15 @@ interface IResponse {
   status: "info" | "error" | "success";
 }
 
-export const useAlert = () => {
-  const { addMaterial } = useActions<IAppActions>(AppCtx, "addMaterial");
+const prepareArray = (arr: IMaterial[]) =>
+  arr.map(({ idMaterial, nameMaterial }) => ({
+    name: nameMaterial,
+    code: idMaterial,
+  }));
+
+export const useAdditionalParts = () => {
+  const { database } = useContextState<IAppState>(AppCtx, ["database"]);
+  const { addPart } = useActions<IAppActions>(AppCtx, "addPart");
 
   const [isAlertVisible, setIsAlertVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -20,21 +27,33 @@ export const useAlert = () => {
     message: "",
     status: "info",
   });
+  const [materialParts, setMaterialParts] = useState<number | string>(
+    database.materials[0]?.idMaterial || 1
+  );
+  const handleMaterialParts = (value: number | string) => {
+    setMaterialParts(value);
+  };
+  const materialsParts = prepareArray(database.materials);
 
   const methods = useForm({
     defaultValues,
     resolver: yupResolver(schema),
   });
-  const { reset, handleSubmit } = methods;
+  const { reset, handleSubmit, setValue } = methods;
 
   const onSubmit: SubmitHandler<typeof defaultValues> = async (formValues) => {
     try {
-      const response = await Api.addMaterial(formValues);
-      console.log("Api.addMaterial", response);
-      addMaterial({
+      const prepareFormValues = {
         ...formValues,
-        idMaterial: response.data.insertId,
-        priceMaterial: Number(formValues.priceMaterial),
+        materialParts: Number(formValues.materialParts),
+        quantityOrderParts: 0,
+        quantityOccupiedParts: 0,
+      };
+      const response = await Api.addPart(prepareFormValues);
+      console.log("Api.addPart", response);
+      addPart({
+        ...prepareFormValues,
+        idParts: response.data.insertId,
       });
       setResponse({
         status: "success",
@@ -68,11 +87,18 @@ export const useAlert = () => {
     return () => clearTimeout(redirectToLoginTimer);
   }, [response.message, response.status]);
 
+  useEffect(() => {
+    setValue("materialParts", Number(materialParts));
+  }, [materialParts]);
+
   return {
     isLoading,
     isAlertVisible,
     response,
     methods,
+    materialsParts,
+    materialParts,
+    handleMaterialParts,
     handleSubmit,
     onSubmit,
     onCloseAlert,

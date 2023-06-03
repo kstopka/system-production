@@ -19,10 +19,15 @@ const AppProvider: React.FC<AppProviderProps> = ({
 
   const getDatabase = async () => {
     try {
-      const response = await Api.getMaterial();
-      dispatch({
+      const responseMaterials = await Api.getMaterials();
+      await dispatch({
         type: "setMaterials",
-        payload: response.data,
+        payload: responseMaterials.data,
+      });
+      const responseParts = await Api.getParts();
+      await dispatch({
+        type: "setParts",
+        payload: responseParts.data,
       });
     } catch (error) {}
 
@@ -40,7 +45,7 @@ const AppProvider: React.FC<AppProviderProps> = ({
   }, []);
 
   useEffect(() => {
-    console.log("TestState", state);
+    console.log("AppProvider STATE: ", state);
   }, [state]);
 
   return (

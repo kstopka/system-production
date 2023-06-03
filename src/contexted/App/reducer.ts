@@ -15,6 +15,10 @@ function appReducer(state = initialState, action: AppActionType): IAppState {
       return actions.setMaterials(state, action.payload);
     case "addMaterial":
       return actions.addMaterial(state, action.payload);
+    case "setParts":
+      return actions.setParts(state, action.payload);
+    case "addPart":
+      return actions.addPart(state, action.payload);
     default:
       throw new Error("Wrong action type in app reducer");
   }

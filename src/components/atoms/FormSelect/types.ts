@@ -3,8 +3,8 @@ export interface FormSelectProps {
   label?: string;
   array: {
     name: string;
-    code: string;
+    code: string | number;
   }[];
-  state: string;
-  setState: (value: string) => void;
+  state: string | number;
+  setState: (value: string | number) => void;
 }

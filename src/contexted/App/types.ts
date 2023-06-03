@@ -1,23 +1,32 @@
 import { ReactNode, Dispatch } from "react";
 
-interface IMaterial {
+export interface IMaterial {
   idMaterial: number;
   nameMaterial: string;
   priceMaterial: number;
   unitMaterial: string;
 }
-
-interface IDatabase {
-  materials: IMaterial[];
+export interface IPart {
+  idParts: number;
+  nameParts: string;
+  materialParts: number;
+  quintityMagazinParts: number;
+  quantityOrderParts: number;
+  quantityOccupiedParts: number;
 }
 
-interface IAppState {
+export interface IDatabase {
+  materials: IMaterial[];
+  parts: IPart[];
+}
+
+export interface IAppState {
   imBusy: boolean;
   isModalOpen: boolean;
   database: IDatabase;
 }
 
-type AppActionType =
+export type AppActionType =
   | { type: "loaded" }
   | { type: "loading" }
   | {
@@ -31,32 +40,32 @@ type AppActionType =
   | {
       type: "addMaterial";
       payload: IMaterial;
+    }
+  | {
+      type: "setParts";
+      payload: IPart[];
+    }
+  | {
+      type: "addPart";
+      payload: IPart;
     };
 
-interface IAppActions {
+export interface IAppActions {
   loaded: () => void;
   loading: () => void;
   setDatabase: (database: IDatabase) => void;
   setMaterials: (materials: IMaterial[]) => void;
   addMaterial: (material: IMaterial) => void;
+  setParts: (parts: IPart[]) => void;
+  addPart: (part: IPart) => void;
 }
 
-interface AppProviderProps {
+export interface AppProviderProps {
   children: ReactNode;
   onLoad?: (dispatch: Dispatch<AppActionType>) => void;
 }
 
-interface IAppContext {
+export interface IAppContext {
   state: IAppState;
   dispatch: Dispatch<AppActionType>;
 }
-
-export type {
-  IMaterial,
-  IDatabase,
-  IAppState,
-  IAppActions,
-  AppActionType,
-  AppProviderProps,
-  IAppContext,
-};

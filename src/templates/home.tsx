@@ -7,16 +7,16 @@ interface HomeProps {}
 
 const HomePage: React.FC<HomeProps> = () => {
   const handleClick = async () => {
-    const response = await Api.getMaterial();
+    const response = await Api.getMaterials();
     console.log(response);
   };
   return (
     <Layout seo={{}}>
       <div className="App">
-        <AdditionalMaterialForm />
+        {/* <AdditionalMaterialForm /> */}
         <AdditionalPartsForm />
       </div>
-      <button onClick={handleClick}>KLIK</button>
+      {/* <button onClick={handleClick}>KLIK</button> */}
     </Layout>
   );
 };

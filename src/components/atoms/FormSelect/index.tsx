@@ -12,7 +12,11 @@ const FormSelect: React.FC<FormSelectProps> = ({
   state,
   setState,
 }) => {
-  const handleSetState = ({ target }: { target: { value: string } }) => {
+  const handleSetState = ({
+    target,
+  }: {
+    target: { value: string | number };
+  }) => {
     setState(target.value);
   };
 

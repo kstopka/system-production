@@ -2,7 +2,7 @@ import Axios from "axios";
 
 class ClassApi {
   baseUrl = "http://localhost:3002/api";
-  getMaterial() {
+  getMaterials() {
     return Axios.get(`${this.baseUrl}/get_material`);
   }
   addMaterial({
@@ -18,6 +18,30 @@ class ClassApi {
       nameMaterial,
       priceMaterial: Number(priceMaterial),
       unitMaterial,
+    });
+  }
+  getParts() {
+    return Axios.get(`${this.baseUrl}/get_parts`);
+  }
+  addPart({
+    nameParts,
+    materialParts,
+    quintityMagazinParts,
+    quantityOrderParts,
+    quantityOccupiedParts,
+  }: {
+    nameParts: string;
+    materialParts: number;
+    quintityMagazinParts: number;
+    quantityOrderParts: number;
+    quantityOccupiedParts: number;
+  }) {
+    return Axios.post(`${this.baseUrl}/add_parts`, {
+      nameParts,
+      materialParts,
+      quintityMagazinParts,
+      quantityOrderParts,
+      quantityOccupiedParts,
     });
   }
 }

@@ -1,4 +1,4 @@
-import { IAppState, IDatabase, IMaterial } from "./types";
+import { IAppState, IDatabase, IMaterial, IPart } from "./types";
 
 class AppActions {
   loaded = (state: IAppState) => ({
@@ -25,6 +25,19 @@ class AppActions {
     database: {
       ...state.database,
       materials: [...state.database.materials, payload],
+    },
+  });
+
+  setParts = (state: IAppState, payload: IPart[]) => ({
+    ...state,
+    database: { ...state.database, parts: payload },
+  });
+
+  addPart = (state: IAppState, payload: IPart) => ({
+    ...state,
+    database: {
+      ...state.database,
+      parts: [...state.database.parts, payload],
     },
   });
 }
