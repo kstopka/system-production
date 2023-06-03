@@ -29,7 +29,7 @@ class ClassAuthApi {
         data: { message: "message" },
         userData: {
           id: 2,
-          level: 3,
+          level: 5,
           email: `email.com`,
           first_name: "Karol",
           last_name: "last",
