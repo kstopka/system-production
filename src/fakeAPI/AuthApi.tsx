@@ -36,7 +36,7 @@ class ClassAuthApi {
         },
       });
     }
-    return Promise.reject({ data: { message: "error" } });
+    return Promise.reject({ data: { message: "Błędne dane" } });
   }
 }
 

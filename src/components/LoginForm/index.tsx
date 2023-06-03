@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { FormProvider } from "react-hook-form";
+import Alert from "../atoms/Alert";
 import FormTextInput from "../atoms/FormTextInput";
 import { useLogin } from "./logic";
 import "./style.css";
@@ -30,27 +31,38 @@ const LoginForm: React.FC = (): JSX.Element => {
   }, []);
 
   return (
-    <div className="Login">
-      <h2>Zaloguj się</h2>
+    <>
+      {isAlertVisible && (
+        <Alert
+          handleClose={onCloseAlert}
+          title={response.status}
+          description={response.message}
+          status={response.status}
+        />
+      )}
 
-      <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(onSubmit)} className="LoginForm">
-          <FormTextInput name="email" label="E-mail" placeholder="E-mail" />
-          <FormTextInput
-            type="password"
-            name="password"
-            label="Hasło"
-            placeholder="Hasło"
-          />
-          <button
-            type="submit"
-            className={`primaryBtn ${isLoading ? "loading" : ""}`}
-          >
-            {isLoading ? "Proszę czekać" : "Zaloguj się"}
-          </button>
-        </form>
-      </FormProvider>
-    </div>
+      <div className="Login">
+        <h2>Zaloguj się</h2>
+
+        <FormProvider {...methods}>
+          <form onSubmit={handleSubmit(onSubmit)} className="LoginForm">
+            <FormTextInput name="email" label="E-mail" placeholder="E-mail" />
+            <FormTextInput
+              type="password"
+              name="password"
+              label="Hasło"
+              placeholder="Hasło"
+            />
+            <button
+              type="submit"
+              className={`primaryBtn ${isLoading ? "loading" : ""}`}
+            >
+              {isLoading ? "Proszę czekać" : "Zaloguj się"}
+            </button>
+          </form>
+        </FormProvider>
+      </div>
+    </>
   );
 };
 
