@@ -1,7 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
-import { ContactPage, HomePage } from "../templates";
+import { HomePage } from "../templates";
 import LoginPage from "../templates/Auth/login";
 import PanelAdmin from "../templates/panel_admin";
+import PartsPage from "../templates/parts";
 
 export interface URLSinglePath {
   label: string;
@@ -34,6 +35,11 @@ const URL_PATHS: URLPaths = {
     slug: "/panel_admin/",
     level: 5,
   },
+  parts: {
+    label: "Części",
+    slug: "/parts/",
+    level: 1,
+  },
   // registiation: {
   //   label: "Registiation",
   //   slug: "/registiation/",
@@ -60,6 +66,10 @@ export const router = createBrowserRouter([
   {
     path: URL_PATHS.admin.slug,
     element: <PanelAdmin />,
+  },
+  {
+    path: URL_PATHS.parts.slug,
+    element: <PartsPage />,
   },
 ]);
 

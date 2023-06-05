@@ -10,6 +10,10 @@ class AppActions {
     ...state,
     imBusy: true,
   });
+  reload = (state: IAppState, payload: boolean) => ({
+    ...state,
+    reload: payload,
+  });
   setDatabase = (state: IAppState, payload: IDatabase) => ({
     ...state,
     database: payload,

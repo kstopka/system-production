@@ -48,6 +48,17 @@ const AppProvider: React.FC<AppProviderProps> = ({
     console.log("AppProvider STATE: ", state);
   }, [state]);
 
+  useEffect(() => {
+    console.log("reload");
+    if (state.reload) {
+      getDatabase();
+    }
+    dispatch({
+      type: "reload",
+      payload: false,
+    });
+  }, [state.reload]);
+
   return (
     <AppCtx.Provider
       value={{

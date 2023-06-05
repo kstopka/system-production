@@ -23,12 +23,14 @@ export interface IDatabase {
 export interface IAppState {
   imBusy: boolean;
   isModalOpen: boolean;
+  reload: boolean;
   database: IDatabase;
 }
 
 export type AppActionType =
   | { type: "loaded" }
   | { type: "loading" }
+  | { type: "reload"; payload: boolean }
   | {
       type: "setDatabase";
       payload: IDatabase;
@@ -53,6 +55,7 @@ export type AppActionType =
 export interface IAppActions {
   loaded: () => void;
   loading: () => void;
+  reload: (value: boolean) => void;
   setDatabase: (database: IDatabase) => void;
   setMaterials: (materials: IMaterial[]) => void;
   addMaterial: (material: IMaterial) => void;

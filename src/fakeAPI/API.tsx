@@ -44,6 +44,10 @@ class ClassApi {
       quantityOccupiedParts,
     });
   }
+
+  delPart(idPart: number) {
+    return Axios.delete(`${this.baseUrl}/del_parts/${idPart}`);
+  }
 }
 
 const Api = new ClassApi();

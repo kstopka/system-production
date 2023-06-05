@@ -9,6 +9,8 @@ function appReducer(state = initialState, action: AppActionType): IAppState {
       return actions.loaded(state);
     case "loading":
       return actions.loading(state);
+    case "reload":
+      return actions.reload(state, action.payload);
     case "setDatabase":
       return actions.setDatabase(state, action.payload);
     case "setMaterials":
