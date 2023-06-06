@@ -1,0 +1,6 @@
+.WrapperParts {
+  display: flex;
+  padding: 30px;
+  gap: 150px;
+  min-height: 76vh;
+}

@@ -1,18 +1,21 @@
-import { useMemo } from "react";
 import { useContextState, AppCtx } from "../../contexted";
 import { IAppState } from "../../contexted/App/types";
 import Table from "../atoms/Table";
-import { defaultColumns } from "./utils";
+import UpdatePartsForm from "../UpdatePartsForm";
+import { useDefaultColumns } from "./logic";
+import "./style.css";
 
 const Parts = (): JSX.Element => {
   const { database } = useContextState<IAppState>(AppCtx, ["database"]);
-  const columns = useMemo(
-    () => defaultColumns(database.materials),
-    [database.parts]
+  const { columns, isUpadte, singlePart } = useDefaultColumns(
+    database.materials
   );
 
   return database.parts && database.parts.length > 0 ? (
-    <Table columns={columns} data={database.parts} />
+    <div className="WrapperParts">
+      <Table columns={columns} data={database.parts} />
+      {isUpadte && <UpdatePartsForm singlePart={singlePart} />}
+    </div>
   ) : (
     <div>
       <h2>Brak części</h2>

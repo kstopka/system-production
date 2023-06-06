@@ -1,5 +1,6 @@
 import { useTable } from "react-table";
 import { ITableProps } from "./types";
+import "./style.css";
 
 const Table = ({ columns, data }: ITableProps): JSX.Element => {
   const { getTableProps, getTableBodyProps, headerGroups, prepareRow, rows } =
@@ -10,8 +11,8 @@ const Table = ({ columns, data }: ITableProps): JSX.Element => {
 
   return (
     <div className="TableWrapper">
-      <table {...getTableProps()}>
-        <thead>
+      <table {...getTableProps()} className="Table">
+        <thead className="TableHead">
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (

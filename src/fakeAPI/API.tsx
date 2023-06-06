@@ -48,6 +48,30 @@ class ClassApi {
   delPart(idPart: number) {
     return Axios.delete(`${this.baseUrl}/del_parts/${idPart}`);
   }
+
+  updatePart({
+    idParts,
+    nameParts,
+    materialParts,
+    quintityMagazinParts,
+    quantityOrderParts,
+    quantityOccupiedParts,
+  }: {
+    idParts: number;
+    nameParts: string;
+    materialParts: number;
+    quintityMagazinParts: number;
+    quantityOrderParts: number;
+    quantityOccupiedParts: number;
+  }) {
+    return Axios.post(`${this.baseUrl}/update_part/${idParts}`, {
+      nameParts,
+      materialParts,
+      quintityMagazinParts,
+      quantityOrderParts,
+      quantityOccupiedParts,
+    });
+  }
 }
 
 const Api = new ClassApi();
