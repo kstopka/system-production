@@ -7,9 +7,28 @@ import { defaultValues } from "./utils";
 export const useDefaultColumns = (materials: IMaterial[]) => {
   const { reload } = useActions<IAppActions>(AppCtx, "reload");
   const [isUpadte, setIsUpadte] = useState(false);
+  const [isAddPart, setIsAddPart] = useState(false);
+  const [isAddMaterial, setIsAddMaterial] = useState(false);
   const [singlePart, setSinglePart] = useState<IPart>(defaultValues);
 
+  const resetState = () => {
+    setIsAddPart(false);
+    setIsUpadte(false);
+    setIsAddMaterial(false);
+  };
+
+  const handleAddPart = () => {
+    resetState();
+    setIsAddPart(true);
+  };
+
+  const handleAddMaterial = () => {
+    resetState();
+    setIsAddMaterial(true);
+  };
+
   const handleUpdateClick = (orginal: IPart) => {
+    resetState();
     setIsUpadte(true);
     console.log(orginal);
     setSinglePart(orginal);
@@ -21,6 +40,10 @@ export const useDefaultColumns = (materials: IMaterial[]) => {
   return {
     isUpadte,
     singlePart,
+    isAddPart,
+    isAddMaterial,
+    handleAddPart,
+    handleAddMaterial,
     columns: [
       {
         Header: () => {

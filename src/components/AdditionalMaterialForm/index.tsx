@@ -34,7 +34,7 @@ const AdditionalMaterialForm: React.FC<AdditionalMaterialFormProps> = () => {
         />
       )}
       <div className="wrapperForm">
-        <h2>AdditionalMaterialForm</h2>
+        <h2>Dodaj Materiał</h2>
         <FormProvider {...methods}>
           <form
             className="form"

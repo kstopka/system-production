@@ -134,4 +134,6 @@ interface IPart {
 export interface ITableProps {
   data: IPart[];
   columns: Column<IPart>[];
+  handleAddPart: () => void;
+  handleAddMaterial: () => void;
 }

@@ -13,7 +13,6 @@ const PartsPage: React.FC<PartsPageProps> = () => {
   return (
     <Layout seo={{}}>
       <div className="Parts">
-        <h1>Części</h1>
         <Parts />
       </div>
     </Layout>

@@ -1,4 +1,13 @@
 .TableWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.WrapperButtons {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 
 table {
