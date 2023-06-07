@@ -41,7 +41,7 @@ const LoginForm: React.FC = (): JSX.Element => {
         />
       )}
 
-      <div className="Login">
+      <div className="LoginWrapper">
         <h2>Zaloguj się</h2>
 
         <FormProvider {...methods}>

@@ -1,0 +1,69 @@
+.WrapperHero {
+  background-color: #000;
+  position: relative;
+}
+
+.HeroImage {
+  width: 100%;
+  height: 79.5vh;
+}
+
+.HeroGradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.HeroWrapperTitle {
+  position: absolute;
+  top: 10vh;
+  left: 15vw;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.HeroTitle {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 40px;
+}
+
+.HeroWrapperDesc {
+  position: absolute;
+  top: 15vh;
+  right: 5vw;
+  left: 60vw;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.HeroDesc {
+  color: #fff;
+  font-size: 25px;
+  line-height: 30px;
+}
+
+.HeroWrapperLinks {
+  position: absolute;
+  top: 35vh;
+  left: 20vw;
+
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.HeroLink {
+  color: #fff;
+  font-size: 25px;
+  line-height: 30px;
+  text-decoration: none;
+
+  padding: 20px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
