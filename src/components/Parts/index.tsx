@@ -32,8 +32,21 @@ const Parts = (): JSX.Element => {
       {isAddMaterial && <AdditionalMaterialForm />}
     </div>
   ) : (
-    <div>
-      <h2>Brak części</h2>
+    <div className="WrapperParts">
+      <div className="WrapperNoParts">
+        <h2>Brak części</h2>
+        <div className="WrapperButtons">
+          <button className="primaryBtn" onClick={() => handleAddPart()}>
+            Dodaj Część
+          </button>
+          <button className="primaryBtn" onClick={() => handleAddMaterial()}>
+            Dodaj Materiał
+          </button>
+        </div>
+      </div>
+      {isUpadte && <UpdatePartsForm singlePart={singlePart} />}
+      {isAddPart && <AdditionalPartsForm />}
+      {isAddMaterial && <AdditionalMaterialForm />}
     </div>
   );
 };
