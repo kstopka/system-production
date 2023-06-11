@@ -16,6 +16,14 @@ const Table = ({
 
   return (
     <div className="TableWrapper">
+      <div className="WrapperButtons">
+        <button className="primaryBtn" onClick={() => handleAddPart()}>
+          Dodaj Część
+        </button>
+        <button className="primaryBtn" onClick={() => handleAddMaterial()}>
+          Dodaj Materiał
+        </button>
+      </div>
       <table {...getTableProps()} className="Table">
         <thead className="TableHead">
           {headerGroups.map((headerGroup) => (

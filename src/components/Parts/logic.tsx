@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { AppCtx, useActions } from "../../contexted";
+import { AppCtx, AuthCtx, useActions, useContextState } from "../../contexted";
 import { IAppActions, IMaterial, IPart } from "../../contexted/App/types";
+import { IAuthState } from "../../contexted/Auth/types";
 import Api from "../../fakeAPI/API";
 import { defaultValues } from "./utils";
 
 export const useDefaultColumns = (materials: IMaterial[]) => {
   const { reload } = useActions<IAppActions>(AppCtx, "reload");
+  const { level } = useContextState<IAuthState>(AuthCtx, ["level"]);
   const [isUpadte, setIsUpadte] = useState(false);
   const [isAddPart, setIsAddPart] = useState(false);
   const [isAddMaterial, setIsAddMaterial] = useState(false);
@@ -90,11 +92,13 @@ export const useDefaultColumns = (materials: IMaterial[]) => {
               Api.delPart(e.row.original.idParts);
               reload(true);
             }}
+            disabled={level < 2}
           >
             Usuń
           </button>
         ),
       },
+
       {
         id: "updatePart",
         Cell: (e: { row: { original: IPart } }) => (
@@ -104,6 +108,7 @@ export const useDefaultColumns = (materials: IMaterial[]) => {
             onClick={() => {
               handleUpdateClick(e.row.original);
             }}
+            disabled={level < 2}
           >
             Edytuj
           </button>
