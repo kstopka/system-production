@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
 import URL_PATHS from "../../constants/routes";
+import { useContextState, AuthCtx } from "../../contexted";
+import { IAuthState } from "../../contexted/Auth/types";
 import heroImage from "./heroImage.png";
 import "./style.css";
 interface HeroProps {}
 
 const Hero: React.FC<HeroProps> = ({}): JSX.Element => {
+  const { level } = useContextState<IAuthState>(AuthCtx, ["level"]);
+
   return (
     <div className="WrapperHero">
       <img src={heroImage} alt="heroImage" className="HeroImage" />
@@ -25,6 +29,11 @@ const Hero: React.FC<HeroProps> = ({}): JSX.Element => {
         <Link to={URL_PATHS.parts.slug} className="HeroLink">
           {URL_PATHS.parts.label}
         </Link>
+        {level > 2 && (
+          <Link to={URL_PATHS.admin.slug} className="HeroLink">
+            {URL_PATHS.admin.label}
+          </Link>
+        )}
       </div>
     </div>
   );
